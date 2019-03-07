@@ -2,6 +2,12 @@
 .Rhistory
 .Rapp.history
 
+# Data Folder
+/Data/*
+
+# Authentication Folder
+/auth/*
+
 # Session Data files
 .RData
 
