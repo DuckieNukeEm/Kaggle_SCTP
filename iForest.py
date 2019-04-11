@@ -1,11 +1,9 @@
 
 # Building Isolation tree in Python
-
-
 import pandas as pd
 import numpy as np
 import random as rd
-
+import os
 
 
 def iTree(df, l, e = 0):
@@ -96,3 +94,14 @@ def Print_iTree(Tree, Direction = None):
         print(Prnt_str)
         Print_iTree(Tree['Left'], 'Left')
         Print_iTree(Tree['Right'], 'Right')
+
+
+if __name__ == 'main':
+	df = pd.read_csv(os.getcwd() + '/Data/train.csv')
+	df_itree = iForest(df.iloc[:,2:202], 500, 256)
+	df['outlier'] tt = predict_iForest(df.iloc[:,2:202], df_itree, 256)
+	df.to_csv(path_or_buf = os.getcwd() + '/Data/train_outlier.csv', index = False, encoding = 'ascii')
+
+	df = pd.read_csv(os.getcwd() + '/Data/test.csv')
+	df['outlier'] tt = predict_iForest(df.iloc[:,2:202], df_itree, 256)
+	df.to_csv(path_or_buf = os.getcwd() + '/Data/test_outlier.csv', index = False, encoding = 'ascii')
